@@ -1,7 +1,10 @@
 // CS 1323 Summer 2020
 // This is a template file, you may use this for your code.
 
-
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 public class Project_5 {
 
@@ -16,6 +19,24 @@ public class Project_5 {
 	public static void main(String[] args) throws FileNotFoundException {
 
 		// call all the methods
+		File file = new File("test.pgm");
+		PrintWriter pw = new PrintWriter(file);
+		pw.println("P2");
+		pw.println("8 3");
+		pw.println("255");
+		pw.println("0 0 255 255 0 0 255 255");
+		pw.println("0 0 255 255 0 0 255 255");
+		pw.println("0 0 255 255 0 0 255 255");
+		//P2
+		//3 8
+		//255
+		//0 0 255 255 0 0 255 255
+		//0 0 255 255 0 0 255 255
+		//0 0 255 255 0 0 255 255
+
+		pw.close();
+		
+		
 	}
 
 	public static int[][] createVerticalStripes(int height, int width, int stripeWidth) {

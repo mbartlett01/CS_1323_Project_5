@@ -20,26 +20,45 @@ public class Project_5 {
 	{
 
 		// call all the methods
-		int[][] testData = {{0, 0, 255, 255, 0, 0, 255, 255},{0, 0, 255, 255, 0, 0, 255, 255},{0, 0, 255, 255, 0, 0, 255, 255}};
+		int[][] testData = createVerticalStripes(64, 64, 32);
 		saveImage("test.pgm", testData);
 	}
 		
 
-	public static int[][] createVerticalStripes(int height, int width, int stripeWidth) {
+	public static int[][] createVerticalStripes(int height, int width, int stripeWidth) 
+	{
+		//Create an array to fill in
+		int[][] verticalArray = new int[height][width];
+		
+		//Loop over each index and determine if it should be black or white
+		for(int row = 0; row < height; row++)
+		{
+			for(int column = 0; column < width; column++)
+			{
+				if(column % (stripeWidth * 2) < stripeWidth)
+				{
+					verticalArray[row][column] = BLACK;
+				}
+				else
+				{
+					verticalArray[row][column] = WHITE;
+				}
+			}
+		}
 
-		// in this method you have to write a nested loop to create vertical stripe pattern
-
-		return null; // change null to the actual array
+		return verticalArray; // change null to the actual array
 	}
 
-	public static int[][] createHorizontalStripes(int height, int width, int stripeWidth) {
+	public static int[][] createHorizontalStripes(int height, int width, int stripeWidth) 
+	{
 
 		// in this method you have to write a nested loop to create horizontal stripe pattern
 
 		return null; // change null to the actual array
 	}
 
-	public static int[][] createCheckerboard(int height, int width, int stripeWidth) {
+	public static int[][] createCheckerboard(int height, int width, int stripeWidth) 
+	{
 
 		// in this method you have to write a nested loop to create checkerboard stripe pattern
 		// keep in mind, the checkerboard should have alternate black & white stripe both
@@ -48,7 +67,8 @@ public class Project_5 {
 		return null;
 	}
 
-	public static int[][] createDiagonalStripes(int height, int width, int stripeWidth) {
+	public static int[][] createDiagonalStripes(int height, int width, int stripeWidth) 
+	{
 
 		// in this method you have to write a nested loop to create diagonal stripe pattern
 
@@ -66,7 +86,6 @@ public class Project_5 {
 		int numRows = image.length;
 		int numColumns = image[0].length;
 		pw.println("" + numColumns + " " + numRows);
-		System.out.println("" + numColumns + " " + numRows);
 		pw.println("255");
 		
 		//Print the file data

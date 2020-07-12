@@ -17,7 +17,7 @@ public class Project_5 {
 	{
 
 		// call all the methods
-		int[][] testData = createCheckerboard(64, 64, 8);
+		int[][] testData = createDiagonalStripes(4, 4, 2);
 		saveImage("test.pgm", testData);
 	}
 		
@@ -100,10 +100,27 @@ public class Project_5 {
 
 	public static int[][] createDiagonalStripes(int height, int width, int stripeWidth) 
 	{
-
-		// in this method you have to write a nested loop to create diagonal stripe pattern
-
-		return null;
+		//Create an array to fill in
+		int[][] diagonalArray = new int[height][width];
+						
+		//Loop over each index and determine if it should be black or white
+		for(int row = 0; row < height; row++)
+		{
+			for(int column = 0; column < width; column++)
+			{
+				if((row + column) % (stripeWidth * 2) < stripeWidth)
+				{
+					diagonalArray[row][column] = BLACK;
+				}
+				else
+				{
+					diagonalArray[row][column] = WHITE;
+				}
+			}
+		}
+			
+		//Return the final array
+		return diagonalArray; 
 	}
 
 	public static void saveImage(String filename, int[][] image) throws FileNotFoundException 

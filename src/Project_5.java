@@ -1,5 +1,6 @@
 // CS 1323 Summer 2020
 import java.io.File;
+import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
@@ -13,12 +14,18 @@ public class Project_5 {
 	public static final int BLACK = 0;
 	public static final int WHITE = 255;
 
-	public static void main(String[] args) throws FileNotFoundException 
+	public static void main(String[] args) throws IOException 
 	{
 
-		// call all the methods
-		int[][] testData = createDiagonalStripes(4, 4, 2);
-		saveImage("test.pgm", testData);
+		// Call all the methods
+		int[][] imageData = createVerticalStripes(250, 250, 10);
+		saveImage("vertical-stripes.pgm", imageData);
+		imageData = createHorizontalStripes(250, 250, 10);
+		saveImage("horizontal-stripes.pgm", imageData);
+		imageData = createCheckerboard(250, 250, 10);
+		saveImage("Checkerboard.pgm", imageData);
+		imageData = createDiagonalStripes(250, 250, 10);
+		saveImage("diagonal-stripes.pgm", imageData);
 	}
 		
 
@@ -123,10 +130,11 @@ public class Project_5 {
 		return diagonalArray; 
 	}
 
-	public static void saveImage(String filename, int[][] image) throws FileNotFoundException 
+	public static void saveImage(String filename, int[][] image) throws IOException
 	{
 		//Create the new file and PrintWriter
 		File file = new File(filename);
+		file.createNewFile();
 		PrintWriter pw = new PrintWriter(file);
 		
 		//Print the preliminary information

@@ -1,7 +1,4 @@
 // CS 1323 Summer 2020
-// This is a template file, you may use this for your code.
-
-import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -20,7 +17,7 @@ public class Project_5 {
 	{
 
 		// call all the methods
-		int[][] testData = createVerticalStripes(64, 64, 32);
+		int[][] testData = createCheckerboard(64, 64, 8);
 		saveImage("test.pgm", testData);
 	}
 		
@@ -45,26 +42,60 @@ public class Project_5 {
 				}
 			}
 		}
-
-		return verticalArray; // change null to the actual array
+		
+		//Return the final array
+		return verticalArray; 
 	}
 
 	public static int[][] createHorizontalStripes(int height, int width, int stripeWidth) 
 	{
-
-		// in this method you have to write a nested loop to create horizontal stripe pattern
-
-		return null; // change null to the actual array
+		//Create an array to fill in
+		int[][] horizontalArray = new int[height][width];
+				
+		//Loop over each index and determine if it should be black or white
+		for(int row = 0; row < height; row++)
+		{
+			for(int column = 0; column < width; column++)
+			{
+				if(row % (stripeWidth * 2) < stripeWidth)
+				{
+					horizontalArray[row][column] = BLACK;
+				}
+				else
+				{
+					horizontalArray[row][column] = WHITE;
+				}
+			}
+		}
+	
+		//Return the final array
+		return horizontalArray; 
 	}
 
 	public static int[][] createCheckerboard(int height, int width, int stripeWidth) 
 	{
-
-		// in this method you have to write a nested loop to create checkerboard stripe pattern
-		// keep in mind, the checkerboard should have alternate black & white stripe both
-		// horizontally and vertically
-
-		return null;
+		//Create an array to fill in
+		int[][] checkerArray = new int[height][width];
+				
+		//Loop over each index and determine if it should be black or white
+		for(int row = 0; row < height; row++)
+		{
+			for(int column = 0; column < width; column++)
+			{
+				//Check to see if both the row and column fit the condition or if both the row and column don't fit the column (!XOR)
+				if(((column % (stripeWidth * 2) < stripeWidth) && (row % (stripeWidth * 2) < stripeWidth)) || (!(column % (stripeWidth * 2) < stripeWidth) && !(row % (stripeWidth * 2) < stripeWidth)))
+				{
+					checkerArray[row][column] = BLACK;
+				}
+				else
+				{
+					checkerArray[row][column] = WHITE;
+				}
+			}
+		}
+				
+		//Return the final array
+		return checkerArray; 
 	}
 
 	public static int[][] createDiagonalStripes(int height, int width, int stripeWidth) 

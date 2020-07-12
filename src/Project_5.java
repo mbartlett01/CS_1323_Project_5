@@ -16,28 +16,14 @@ public class Project_5 {
 	public static final int BLACK = 0;
 	public static final int WHITE = 255;
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws FileNotFoundException 
+	{
 
 		// call all the methods
-		File file = new File("test.pgm");
-		PrintWriter pw = new PrintWriter(file);
-		pw.println("P2");
-		pw.println("8 3");
-		pw.println("255");
-		pw.println("0 0 255 255 0 0 255 255");
-		pw.println("0 0 255 255 0 0 255 255");
-		pw.println("0 0 255 255 0 0 255 255");
-		//P2
-		//3 8
-		//255
-		//0 0 255 255 0 0 255 255
-		//0 0 255 255 0 0 255 255
-		//0 0 255 255 0 0 255 255
-
-		pw.close();
-		
-		
+		int[][] testData = {{0, 0, 255, 255, 0, 0, 255, 255},{0, 0, 255, 255, 0, 0, 255, 255},{0, 0, 255, 255, 0, 0, 255, 255}};
+		saveImage("test.pgm", testData);
 	}
+		
 
 	public static int[][] createVerticalStripes(int height, int width, int stripeWidth) {
 
@@ -69,8 +55,32 @@ public class Project_5 {
 		return null;
 	}
 
-	public static void saveImage(String filename, int[][] image) throws FileNotFoundException {
-
-		// in this methiod you need to read in the array and write it to the appropriate file name
+	public static void saveImage(String filename, int[][] image) throws FileNotFoundException 
+	{
+		//Create the new file and PrintWriter
+		File file = new File(filename);
+		PrintWriter pw = new PrintWriter(file);
+		
+		//Print the preliminary information
+		pw.println("P2");
+		int numRows = image.length;
+		int numColumns = image[0].length;
+		pw.println("" + numColumns + " " + numRows);
+		System.out.println("" + numColumns + " " + numRows);
+		pw.println("255");
+		
+		//Print the file data
+		for(int row = 0; row < numRows; row++)
+		{
+			for(int column = 0; column < numColumns; column++)
+			{
+				pw.print(image[row][column] + " ");
+			}
+			pw.println("");
+		}
+		
+		//Close the PrintWriter
+		pw.close();
+		
 	}
 }
